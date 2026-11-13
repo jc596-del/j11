@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para Estrellita 🌷🌼✨</title>
+    
+    <!-- Fuentes de Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent; 
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Fondo nocturno romántico con tulipanes */
+            background: linear-gradient(rgba(12, 8, 16, 0.55), rgba(18, 6, 12, 0.78)), 
+                        url('https://images.unsplash.com/photo-1520763185298-1b434c919102?q=80&w=1000&auto=format&fit=crop') no-repeat center center/cover;
+            padding: 12px; 
+            position: relative;
+        }
+
+        #bg-flowers-container, #animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+
+        #bg-flowers-container {
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        #animation-container {
+            z-index: 20;
+        }
+
+        .bg-flower {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0;
+            animation: bgFloat linear infinite;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+        }
+
+        @keyframes bgFloat {
+            0% {
+                transform: translateY(105vh) rotate(0deg) scale(0.6);
+                opacity: 0;
+            }
+            15% { opacity: 0.85; }
+            85% { opacity: 0.85; }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .card {
+            background: rgba(20, 12, 18, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1.5px solid rgba(244, 63, 94, 0.65);
+            padding: 22px 20px;
+            border-radius: 24px;
+            max-width: 360px; /* Más delgado para celular */
+            width: 100%;
+            max-height: 88vh;
+            overflow-y: auto;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85), 0 0 30px rgba(225, 29, 72, 0.3);
+            position: relative;
+            z-index: 10;
+            animation: cardEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .card::-webkit-scrollbar {
+            width: 3px;
+        }
+        .card::-webkit-scrollbar-thumb {
+            background: rgba(244, 63, 94, 0.5);
+            border-radius: 10px;
+        }
+
+        .flower-banner {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            filter: drop-shadow(0 2px 10px rgba(254, 240, 138, 0.6));
+            animation: pulseBanner 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseBanner {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            color: #fef08a;
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 15px rgba(253, 224, 71, 0.75);
+        }
+
+        .message {
+            color: #fff1f2;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            text-align: left;
+            font-weight: 300;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+        }
+
+        .highlight-red {
+            color: #fda4af;
+            font-weight: 600;
+        }
+
+        .highlight-white {
+            color: #ffffff;
+            font-weight: 600;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+        }
+
+        .love-declaration {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.45rem;
+            color: #fef08a;
+            margin: 14px 0 14px 0;
+            text-shadow: 0 0 14px rgba(252, 211, 77, 0.95);
+            line-height: 1.4;
+        }
+
+        #propose-btn {
+            background: linear-gradient(135deg, #e11d48, #9f1239);
+            color: #ffffff;
+            border: 1.5px solid rgba(255, 255, 255, 0.75);
+            padding: 13px 22px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 260px;
+            box-shadow: 0 6px 20px rgba(225, 29, 72, 0.6), 0 0 15px rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        #propose-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(225, 29, 72, 0.85), 0 0 20px rgba(254, 240, 138, 0.6);
+        }
+
+        #propose-btn:active {
+            transform: scale(0.96);
+            background: #881337;
+        }
+
+        @keyframes cardEntrance {
+            from { opacity: 0; transform: scale(0.88) translateY(30px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .romantic-element {
+            position: absolute;
+            pointer-events: none;
+            will-change: transform, opacity;
+            bottom: -50px;
+            opacity: 0;
+            animation: floatAndFade 3.5s linear forwards;
+        }
+
+        @keyframes floatAndFade {
+            0% {
+                transform: translate(0, 0) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% {
+                transform: translate(var(--x-move), -105vh) scale(var(--final-scale)) rotate(var(--rotation));
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- MÚSICA DE FONDO LOCAL -->
+<audio id="bg-music" src="audioC1.mp3" autoplay loop preload="auto"></audio>
+
+<div id="bg-flowers-container"></div>
+<div id="animation-container"></div>
+
+<div class="card">
+    <div class="flower-banner">
+        <span>🌷</span>
+        <span>✨</span>
+        <span>🌼</span>
+        <span>❤️</span>
+        <span>✨</span>
+    </div>
+
+    <h1>Para Estrellita ✨</h1>
+
+    <p class="message">
+        Desde el momento en que te conocí, mi vida cambió por completo; antes solo pasaban los días, pero contigo recién empecé a vivir de verdad y a entender lo que es la felicidad ✨.
+    </p>
+
+    <p class="message">
+        Dicen que los <span class="highlight-red">tulipanes rojos</span> representan el amor más sincero y las <span class="highlight-white">margaritas blancas</span> la pureza de un sentimiento real... y cuando pienso en quién merece todo eso, sin duda eres tú, la estrella que brilla en mi mente.
+    </p>
+
+    <div class="love-declaration">
+        Quiero que seas siempre mi estrellita, la que ilumina mis noches 🌷🌼✨<br>
+        <span style="font-size: 1.25rem; color: #fff;">¿TÚ QUIERES SER MI ESTRELLITA? ✨💛</span>
+    </div>
+
+    <button id="propose-btn">Presiona aquí, Estrellita 🌷❤️</button>
+</div>
+
+<script>
+    const audio = document.getElementById('bg-music');
+    let reproducido = false;
+
+    function iniciarMusica() {
+        if (!reproducido) {
+            audio.play().then(() => {
+                reproducido = true;
+                ['click', 'touchstart', 'touchend', 'scroll', 'keydown'].forEach(evt => {
+                    document.removeEventListener(evt, iniciarMusica);
+                });
+            }).catch(() => {
+                // Esperando interacción del navegador móvil
+            });
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', iniciarMusica);
+    window.addEventListener('load', () => {
+        iniciarMusica();
+        crearFloresFondo();
+    });
+
+    ['click', 'touchstart', 'touchend', 'scroll', 'keydown'].forEach(evt => {
+        document.addEventListener(evt, iniciarMusica, { passive: true });
+    });
+
+    function crearFloresFondo() {
+        const container = document.getElementById('bg-flowers-container');
+        const bgPool = ['🌷', '🌼', '✨', '🤍', '❤️', '⭐'];
+        const cantidadFondo = 30;
+
+        for (let i = 0; i < cantidadFondo; i++) {
+            const flower = document.createElement('div');
+            flower.classList.add('bg-flower');
+            flower.innerText = bgPool[Math.floor(Math.random() * bgPool.length)];
+            
+            flower.style.left = Math.random() * 95 + 'vw';
+            flower.style.fontSize = (Math.random() * 18 + 14) + 'px';
+            
+            const duration = Math.random() * 7 + 6;
+            const delay = Math.random() * 8;
+            flower.style.animationDuration = duration + 's';
+            flower.style.animationDelay = delay + 's';
+
+            container.appendChild(flower);
+        }
+    }
+
+    document.getElementById('propose-btn').addEventListener('click', () => {
+        iniciarMusica();
+
+        const container = document.getElementById('animation-container');
+        const elementsPool = ['🌷', '🌼', '❤️', '🤍', '✨', '⭐', '🌷', '🌼'];
+        const totalElements = 65; 
+        
+        for (let i = 0; i < totalElements; i++) {
+            const element = document.createElement('div');
+            element.classList.add('romantic-element');
+            
+            element.innerText = elementsPool[Math.floor(Math.random() * elementsPool.length)];
+            element.style.left = Math.random() * 90 + 5 + 'vw';
+            
+            element.style.animationDelay = (i < 20) ? '0s' : (Math.random() * 0.7) + 's';
+            element.style.animationDuration = Math.random() * 1.8 + 2.2 + 's'; 
+            
+            const baseSize = Math.random() * 24 + 18; 
+            element.style.fontSize = baseSize + 'px';
+            element.style.textShadow = '0 0 14px rgba(255, 255, 255, 0.85)';
+
+            const xMove = Math.random() * 40 - 20 + 'vw'; 
+            const finalRotation = Math.random() * 360 - 180 + 'deg'; 
+            const finalScale = Math.random() * 0.5 + 1.2; 
+            
+            element.style.setProperty('--x-move', xMove);
+            element.style.setProperty('--rotation', finalRotation);
+            element.style.setProperty('--final-scale', finalScale);
+            
+            container.appendChild(element);
+            
+            setTimeout(() => {
+                element.remove();
+            }, 4200);
+        }
+    });
+</script>
+
+</body>
+</html>
